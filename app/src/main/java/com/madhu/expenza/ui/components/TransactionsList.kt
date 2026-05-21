@@ -158,10 +158,10 @@ fun TransactionsList(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        LazyColumn(
+        Column(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(transactions) { transaction ->
+            transactions.forEach { transaction ->
                 TransactionItem(
                     name = transaction.name,
                     date = transaction.date,

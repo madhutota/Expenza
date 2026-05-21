@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -20,6 +21,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -67,11 +69,21 @@ fun DashboardScreen(
             }
         }
     }
+    Scaffold(
+        containerColor = DarkBg,
+        snackbarHost = {
+            SnackbarHost(
+                hostState = snackbarHostState,
+                modifier = Modifier.padding(16.dp)
+            )
+        }
+    ) { innerpadding ->
 
     if (viewState.value.isLoading) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(innerpadding)
                 .background(DarkBg),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -82,6 +94,7 @@ fun DashboardScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(innerpadding)
                 .background(DarkBg)
         ) {
             Column(
@@ -184,5 +197,6 @@ fun DashboardScreen(
                 modifier = Modifier.padding(16.dp)
             )
         }
+    }
     }
 }
